@@ -1,0 +1,7 @@
+server:
+  port: 8080
+spring:
+  security:
+    user:
+      name: admin
+      password: '{bcrypt}$2a$10$G9lOWpNeelR3W2sxp5gtreyf7XsYiFiELKrdItgkheX8Hz5gvEigG'
