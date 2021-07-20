@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class UserDeServiceImpl implements UserDetailsService {
     @Autowired
-    BCryptPasswordEncoder myBcryptConfigure;
+    BCryptPasswordEncoder getBcrypt;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         if (!s.equals("admin")) {
@@ -24,10 +24,11 @@ public class UserDeServiceImpl implements UserDetailsService {
         }
         String name = "admin";
         String pwd = "123456";
-        String newpwd = myBcryptConfigure.encode(pwd);
+//        String newpwd = getBcrypt.encode(pwd);
+//        System.out.println(newpwd);
 //        数据库获取的限权
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_admin,ROLE_normal,sys:res:retrieve,sys:res:create");
-        User user = new User(name,newpwd, grantedAuthorities);
+        User user = new User(name,getBcrypt.encode(pwd), grantedAuthorities);
         return user;
     }
 }
