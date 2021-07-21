@@ -2,13 +2,17 @@ package cn.dszx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Arrays;
 
 
 @SpringBootApplication
 public class myapplication {
     public static void main(String[] args) {
-        SpringApplication.run(myapplication.class,args);
+        ConfigurableApplicationContext run = SpringApplication.run(myapplication.class, args);
+        System.out.println(run.containsBean("test2"));
 //        test();
     }
 //    public static void test(){
