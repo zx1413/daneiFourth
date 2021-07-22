@@ -1,8 +1,6 @@
 package cn.dszx.Secrity.Configure;
 
-import cn.dszx.Secrity.Handle.myErrorHandle;
-import cn.dszx.Secrity.Handle.myJsonHandle;
-import cn.dszx.Secrity.Handle.mySuccessHandle;
+import cn.dszx.Secrity.Handle.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -27,6 +25,10 @@ public class myBcryptConfigure extends WebSecurityConfigurerAdapter {
 //        关闭跨域
         http.csrf().disable();
 //        设置表单拦截登录界面
+
+        http.exceptionHandling()
+                .accessDeniedHandler(new myaccessDenidedHandle())
+                .authenticationEntryPoint(new myErrorAuthen());
         http.formLogin()
                 .loginPage("/login.html")
                 .loginProcessingUrl("/login")
