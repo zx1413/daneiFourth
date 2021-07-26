@@ -3,6 +3,7 @@ package cn.dszx;
 import io.jsonwebtoken.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.DigestUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -40,10 +41,12 @@ public class JwtTest {
         System.out.println(compact);
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(sort).parseClaimsJws(compact);
         System.out.println(claimsJws);
+//        System.out.println(claimsJws);
+//
+//        Calendar calendar1 = Calendar.getInstance();
+//        calendar1.add(Calendar.MINUTE,30);
+//        Date time1 = calendar.getTime();
 
-        Calendar calendar1 = Calendar.getInstance();
-        calendar1.add(Calendar.MINUTE,30);
-        Date time1 = calendar.getTime();
 
     }
 }

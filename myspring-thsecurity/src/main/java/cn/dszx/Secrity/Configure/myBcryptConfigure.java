@@ -24,11 +24,12 @@ public class myBcryptConfigure extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        关闭跨域
         http.csrf().disable();
-//        设置表单拦截登录界面
+
 
         http.exceptionHandling()
                 .accessDeniedHandler(new myaccessDenidedHandle())
                 .authenticationEntryPoint(new myErrorAuthen());
+        //        设置表单拦截登录界面
         http.formLogin()
                 .loginPage("/login.html")
                 .loginProcessingUrl("/login")

@@ -19,7 +19,7 @@ public class myController {
             map.put("msg","success");
             Map<String,Object> map1 = new HashMap<>();
             map1.put("username",username);
-            map.put("authen",new myJwtsUtil().getJwts(map1));
+            map.put("authen",myJwtsUtil.getJwts(map1));
             return map;
         }else {
             map.put("state","400");
