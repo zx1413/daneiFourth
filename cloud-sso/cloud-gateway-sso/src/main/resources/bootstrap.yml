@@ -1,0 +1,29 @@
+server:
+  port: 8085
+spring:
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: routh-authen
+          uri: lb://cloud-sso-authen
+          predicates:
+            - Path=/auth/login
+          filters:
+            - StripPrefix=1
+        - id: routh-rec
+          uri: lb://cloud-recourse-sso
+          predicates:
+            - Path=/rec/**
+          filters:
+            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+  application:
+    name: cloud-sso-gateway

@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/jt_security?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+  application:
+    name: cloud-sso-authen
+  cloud:
+    nacos:
+      discovery:
+      # enabled: true
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+logging:
+  level:
+   cn.dszx: debug

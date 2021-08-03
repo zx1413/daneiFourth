@@ -1,0 +1,27 @@
+#修改为bootstrap为系统级别的配置中心，最优先加载 高于服务集群的网页版的配置中心
+server:
+  port: 8080
+#  tomcat 连接线程数默认为200
+#  tomcat:
+#    max-connections: 200
+spring:
+  application:
+    name: sca-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config: #服务的配置
+        server-addr: localhost:8848
+        file-extension: yaml
+        namespace: e3222a5c-cf26-4c40-8771-11568568fe64
+        group: DEV_GROUP_51
+        shared-configs[0]: # 共享配置
+         data-id: app-public-dev.yml
+         refresh: true
+#          data-id: myapp-public
+#          refresh: true
+#        group: DEFAULT_GROUP
+#logging:
+#  level:
+#    cn.dszx: debug

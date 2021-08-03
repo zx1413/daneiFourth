@@ -12,7 +12,7 @@
         <module>sso-authen</module>
         <module>sso-source</module>
         <module>sso-common</module>
-        <module>sso-ui</module>
+        <module>sso-myweb</module>
     </modules>
 
     <properties>

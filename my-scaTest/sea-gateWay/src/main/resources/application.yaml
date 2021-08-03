@@ -1,0 +1,36 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: sca-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启可同通服务器远程调用
+      routes:
+        - id: route01  # 配置路由的id 可配置多个- id 唯一标识
+          #uri: http://localhost:8080/ # 转发url 要与上面的位对齐
+          uri: lb://sca-provider   #负载均衡 loadblance省略 url为uri的子集 负载均衡对应服务名
+          predicates: ###匹配规则 (谓词) 断言：添加不同的匹配规则 访问添加的规则
+            - Path=/nacos/echo/**
+            - After=2021-08-02T00:00:00.789+08:00[Asia/Shanghai]
+          # - Query=mytest,\d+ #后面表示的为正则表达式式  请求参数
+          # - Header=newtest,\d+ #请求头
+            - Method=Get
+#            - Before=2021-08-03T00:00:00.789+08:00[Asia/Shanghai]
+          filters:   #局部过滤器 应用于某一id 路由
+            - StripPrefix=1 #转发之前去掉path中第一层路径，例如nacos
+          # - AddRequestHeader=myname,dszx # 访问时添加 请求头
+          # - AddRequestParameter=mypassword,123456 #访问添加参数
+            - PrefixPath=/provider #转发之前添加前置url 访问网址 /nacos/echo/xxx  调用provide服务器中的controller网址  /provider/echo/xxx
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8180
+        port: 8719
+      eager: true
+
+

@@ -1,0 +1,20 @@
+server:
+  port: 8082
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    sentinel:
+      transport:
+#        监控端口
+        port: 8719
+#        控制台端口
+        dashboard: localhost:8180
+#        启动时直接注册，不用调用时注册
+      eager: true
+  application:
+    name: sca-consumer
+#启用异常处理
+feign:
+  hystrix:
+    enabled: true
