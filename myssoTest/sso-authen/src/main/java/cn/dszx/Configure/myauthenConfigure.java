@@ -23,6 +23,7 @@ import java.util.Map;
 public class myauthenConfigure extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder getBcry(){
+
         return new BCryptPasswordEncoder();
     }
 
